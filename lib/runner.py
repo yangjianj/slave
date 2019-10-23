@@ -1,21 +1,25 @@
 # -*- coding: utf-8 -*-
-from app_demo1.lib.api_test import Apiclient
-from app_demo1.lib.tool import *
-from app_demo1.lib.database_con import  DataManager
-from app_demo1.lib.log_manager import LogManager
-from app_demo1.config import config
+from lib.api_test import Apiclient
+from lib.tool import *
+import unittest
+from lib.HtmlTestRunner import HTMLTestRunner
+from lib.database_con import  DataManager
+from lib.log_manager import LogManager
+import config
 
 class ApiRunner():
-    def __init__(self,file,dbtable):
-        self.all_cases = import_excel_data(file)
-        self.table=dbtable
+    def __init__(self,task):
+        self.all_cases = task["data"]["cases"]
+        self.version = task["data"]["version"]
+        self.taskid = task["id"]
+        self.table=config.API_RESULT_TABLE
         self.logger=LogManager("api")
 
     def run(self):
         result=[]
-        for case in self.all_cases[1:]:
+        for case in self.all_cases:
             print(case)
-            client = Apiclient(config_build("wuliu",case))
+            client = Apiclient(case)
             re=client.test()
             re["case"]=case
             print(re)
@@ -31,9 +35,12 @@ class ApiRunner():
 
 
 class UiRunner():
-    def __init__(self):
-        #self.logger = LogManager("system")
-        pass
+    def __init__(self,task):
+        self.all_cases = task["data"]["cases"]
+        self.version = task["data"]["version"]
+        self.taskid = task["id"]
+        self.table = config.UI_RESULT_TABLE
+        self.logger = LogManager("ui")
 
     #根据文件名匹配case
     def run_by_pattern(self,casedir,testplan):
@@ -64,6 +71,9 @@ class UiRunner():
             all_result=runner.run(discover)
 
         return all_result
+
+    def run(self,task):
+        pass
 
 
 if __name__=="__main__":

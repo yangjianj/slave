@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 import yaml,time
-from app_demo1.config import config
+import config
 from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from app_demo1.lib.log_manager import LogManager
+from lib.log_manager import LogManager
 #from Exception import Custom_exception
 
 #API网站：https://selenium-python-zh.readthedocs.io/en/latest/index.html

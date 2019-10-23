@@ -9,8 +9,10 @@ report_path = 'd:/report'
 BASEDIR = 'c:/test/'
 #ui
 uicase_dir = "case/ui"
+UI_RESULT_TABLE = 'ui_result_table'
 
 
 #api
 apicase_dir = "case/api"
 Interface_Time_Out = 10
+API_RESULT_TABLE = 'api_result_table'

@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 import requests
 from requests import exceptions
-from app_demo1.lib.tool import *
+from lib.tool import *
 import config
 
 class Reques():

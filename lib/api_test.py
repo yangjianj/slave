@@ -1,18 +1,18 @@
 # -*- coding: utf-8 -*-
 import time,json
 import threading
-from app_demo1.lib.reques import Reques
+from lib.reques import Reques
 from jsonschema import validate
 
 #接口类
 class Apiclient():
-	def __init__(self,mrequest):
-		self.url=mrequest["url"]
-		self.method=mrequest["method"]
-		self.reparam=mrequest["reparam"]
-		self.redata=mrequest["redata"]
-		self.headers=mrequest["headers"]
-		self.expected=mrequest["expected"]
+	def __init__(self,case):
+		self.url=case["url"]
+		self.method=case["method"]
+		self.reparam=case["reparam"]
+		self.redata=case["redata"]
+		self.headers=case["headers"]
+		self.expected=case["expected"]
 		self.requ=Reques()
 		self.response=[]
 
