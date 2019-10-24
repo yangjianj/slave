@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from lib.api_test import Apiclient
-from lib.tool import *
 import unittest
 from lib.HtmlTestRunner import HTMLTestRunner
+from lib.api_test import Apiclient
+from lib.tool import *
 from lib.database_con import  DataManager
 from lib.log_manager import LogManager
 import config
@@ -13,16 +13,14 @@ class ApiRunner():
         self.version = task["data"]["version"]
         self.taskid = task["id"]
         self.table=config.API_RESULT_TABLE
-        self.logger=LogManager("api")
+        self.logger=LogManager()
 
     def run(self):
         result=[]
         for case in self.all_cases:
-            print(case)
             client = Apiclient(case)
             re=client.test()
             re["case"]=case
-            print(re)
             self._save_result(re)  #每执行完一条case就存储到数据库
             result.append(re)
         return result
@@ -40,7 +38,7 @@ class UiRunner():
         self.version = task["data"]["version"]
         self.taskid = task["id"]
         self.table = config.UI_RESULT_TABLE
-        self.logger = LogManager("ui")
+        self.logger = LogManager()
 
     #根据文件名匹配case
     def run_by_pattern(self,casedir,testplan):
@@ -75,7 +73,10 @@ class UiRunner():
     def run(self,task):
         pass
 
+    def _save_result(self):
+        pass
+
 
 if __name__=="__main__":
-    cc=ApiPerformer(config.API_CASE["wuliu"],'rr')
+    cc=UiRunner(config.API_CASE["wuliu"],'rr')
     print(cc.run())

@@ -9,8 +9,8 @@ class Apiclient():
 	def __init__(self,case):
 		self.url=case["url"]
 		self.method=case["method"]
-		self.reparam=case["reparam"]
-		self.redata=case["redata"]
+		#self.reparam=case["reparam"]
+		self.data=case["data"]
 		self.headers=case["headers"]
 		self.expected=case["expected"]
 		self.requ=Reques()
@@ -18,7 +18,7 @@ class Apiclient():
 
 	def test(self):
 		if self.method=='POST' or self.method=='post':
-			result=self.requ.post(url=self.url,redata=self.redata,reparam=self.reparam,headers=self.headers)
+			result=self.requ.post(url=self.url,data=self.data,headers=self.headers)
 		elif self.method=='GET' or self.method=='get':
 			result=self.requ.get(url=self.url,headers=self.headers,parms=self.reparam)
 		elif self.method=='PUT' or self.method=='put':
@@ -71,11 +71,6 @@ class Multiclient(threading.Thread):
 			return self.result
 		except Exception as e:
 			return e
-
-def a(x=1):
-	time.sleep(5)
-	print('sleeping....')
-	return 1
 
 if __name__ == '__main__':
 	t_list=[]

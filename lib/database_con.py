@@ -2,8 +2,6 @@
 import sqlite3
 import config
 
-
-
 class DataManager():
     def __init__(self):
         dbpath= config.DATABASE
@@ -46,10 +44,10 @@ class DataManager():
 
     def save_api_case(self,apiresult):
         if ("re" in apiresult) and ("response" in apiresult["re"]):
-            _caseid=apiresult["case"][1]
-            _version = apiresult["case"][2]
-            _apilink = apiresult["case"][6]
-            _request_data = apiresult["case"][10]
+            _caseid=apiresult["case"]['caseid']
+            _version = apiresult["case"]['version']
+            _url = apiresult["case"]['url']
+            _request_data = apiresult["case"]['data']
             _response = apiresult["re"]["response"]
             _result = apiresult["re"]["test_result"]
             _spend = apiresult["spend"]
@@ -57,7 +55,7 @@ class DataManager():
             _end_time = apiresult["end-time"]
             try:
                 table = self._cc.execute("insert into api_case_result (caseid,version,api_link,request_data,response,result,spend,start_time,end_time) \
-	            values('%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(_caseid,_version,_apilink,_request_data,_response,_result,_spend,_start_time,_end_time))
+	            values('%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(_caseid,_version,_url,_request_data,_response,_result,_spend,_start_time,_end_time))
                 self._conn.commit()
                 return True
             except Exception as e:
@@ -65,10 +63,10 @@ class DataManager():
                 print(e)
                 return e
         elif  ("re" in apiresult) and ("error" in apiresult["re"]):
-            _caseid = apiresult["case"][1]
-            _version = apiresult["case"][2]
-            _apilink = apiresult["case"][6]
-            _request_data = apiresult["case"][10]
+            _caseid = apiresult["case"]['caseid']
+            _version = apiresult["case"]['version']
+            _url = apiresult["case"]['url']
+            _request_data = apiresult["case"]['data']
             _response = apiresult["re"]["error"]
             _result = "error"
             _spend = apiresult["spend"]
@@ -77,7 +75,7 @@ class DataManager():
             try:
                 table = self._cc.execute("insert into api_case_result (caseid,version,api_link,request_data,response,result,spend,start_time,end_time) \
                 	            values('%s','%s','%s','%s','%s','%s','%s','%s','%s')" % (
-                _caseid, _version, _apilink, _request_data, _response, _result, _spend, _start_time, _end_time))
+                _caseid, _version, _url, _request_data, _response, _result, _spend, _start_time, _end_time))
                 self._conn.commit()
                 return True
             except Exception as e:

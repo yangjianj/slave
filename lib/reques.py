@@ -26,11 +26,11 @@ class Reques():
             return {'get请求出错':"错误原因:%s"%e}
 
     @record_time
-    def post(self, url, redata,reparam,headers):#post消息
+    def post(self,url,data,headers):#post消息
         #redata(string);reparam(dict)
         result={}
         try:
-            self.r =requests.post(url, data=redata, params=reparam, headers=headers, timeout=config.Interface_Time_Out)
+            self.r =requests.post(url, data=data,headers=headers, timeout=config.Interface_Time_Out)
             spend = self.r.elapsed.total_seconds()
             #json_response = json.loads(self.r.text)
             result["response"]=self.r.text
