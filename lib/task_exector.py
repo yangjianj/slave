@@ -29,6 +29,7 @@ class Exector():
 
 
 if __name__ == "__main__":
+    '''  
     task = {"id": 5662356461,
             "type": "api",
             "data": {"project": "pro1",
@@ -52,5 +53,14 @@ if __name__ == "__main__":
                                                       "data": {"type": "array"}}}}
                      ]
                      }}
-
+    '''
+    task = {"id": 5662356461,
+            "type": "ui",
+            "data": {"project": "lianjia",
+                     "version": "0.0.1",
+                     "cases": [
+                         {"suitename": "ui_lianjia_test_001", "version": "0.01", "project": "lianjia", "function": "login"},
+                         {"suitename": "ui_lianjia_test_001", "version": "0.01", "project": "lianjia", "function": "login"},
+                     ]
+                     }}
     Exector().task_handler(task)

@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 import time,os
 import unittest
-from app_demo3.lib.page_handler import Pagehandler
+from lib.page_handler import Pagehandler
 
 class Base_t1(unittest.TestCase):  # 继承unittest.TestCase
 
     @classmethod
     def setUpClass(cls): #每个测试套件执行之前动作
         Base_t1.handler = Pagehandler()
+        Base_t1.handler.load_element_location_file('baidu.yaml')
 
     @classmethod
     def tearDownClass(cls): #每个测试套件执行之后动作
@@ -17,7 +18,7 @@ class Base_t1(unittest.TestCase):  # 继承unittest.TestCase
     def setUp(self):
         # 每个测试用例执行之前做操作
         self.handler = Base_t1.handler
-        self.handler.load_element_location_file("lianjia")
+        self.handler.load_element_location_file("lianjia.yaml")
         print('in setup')
 
     def tearDown(self):

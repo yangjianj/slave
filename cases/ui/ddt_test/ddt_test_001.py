@@ -2,7 +2,7 @@ import os,time
 import unittest
 #import xmlrunner
 import ddt
-from  app_demo1.lib.tool import *
+from  lib.tool import *
 
 configpath=os.path.join(os.path.dirname(os.path.abspath(__file__)),"config//ddt_test_001.csv")
 testdata = import_excel_data_for_ddt(configpath)

@@ -14,7 +14,7 @@ from lib.log_manager import LogManager
 class Pagehandler():
 
     def __init__(self,browser='chrome'):
-        self.logger = LogManager("ui")
+        self.logger = LogManager()
         #self.website = website
         self.url = None
         self.curr_page = None
@@ -27,15 +27,11 @@ class Pagehandler():
         #self.browser.get(config.WEBSITE[website])  #"http://www.baidu.com"
         self.browser.implicitly_wait(10)
 
-    def load_element_location_file(self,website): #website网站名
-        try:
-            pagefile=open(config.PAGEFILE[website], 'r', encoding="utf-8")
-            _page_message = pagefile.read()
-            pagefile.close()
-            self.pagedata=yaml.load(_page_message)
-        except Exception as e:
-            self.logger.error('load element yaml file failed')
-            self.logger.error(e)
+    def load_element_location_file(self,file): #website网站名
+        pagefile=open(file, 'r', encoding="utf-8")
+        _page_message = pagefile.read()
+        pagefile.close()
+        self.pagedata=yaml.load(_page_message)
 
     def _locate_element(self,element,page=None):
         if page == '' or page == None:

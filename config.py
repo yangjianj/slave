@@ -8,13 +8,14 @@ slave_label = 'test1'  #
 taskqueue = 'test1'
 
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
-LOG_FILE = os.path.join(BASEDIR,'log/system.log')
-REPORT_DIR = os.path.join(BASEDIR,'report/')
+LOG_FILE = os.path.join(BASEDIR,'output/log/system.log')
+OUTPUT = os.path.join(BASEDIR,'output/')
 #DATABASE = 'D:\yangjian\project\web_demo\django_web\db.sqlite3'
 DATABASE = 'F:\work\project\django_web\db.sqlite3'
 
 #ui
 UICASE_DIR = os.path.join(BASEDIR,'cases/ui/')
+UI_REPORT_DIR = os.path.join(BASEDIR,'output/report/')
 UI_RESULT_TABLE = 'ui_result_table'
 
 #api

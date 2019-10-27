@@ -42,7 +42,7 @@ class DataManager():
     def delete_user(self,name):
         pass
 
-    def save_api_case(self,apiresult):
+    def save_api_result(self,apiresult):
         if ("re" in apiresult) and ("response" in apiresult["re"]):
             _caseid=apiresult["case"]['caseid']
             _version = apiresult["case"]['version']
@@ -54,7 +54,7 @@ class DataManager():
             _start_time = apiresult["start-time"]
             _end_time = apiresult["end-time"]
             try:
-                table = self._cc.execute("insert into api_case_result (caseid,version,api_link,request_data,response,result,spend,start_time,end_time) \
+                table = self._cc.execute("insert into api_case_result (caseid,version,api_link,request_data,response,result,spend,starttime,endtime) \
 	            values('%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(_caseid,_version,_url,_request_data,_response,_result,_spend,_start_time,_end_time))
                 self._conn.commit()
                 return True
@@ -73,7 +73,7 @@ class DataManager():
             _start_time = apiresult["start-time"]
             _end_time = apiresult["end-time"]
             try:
-                table = self._cc.execute("insert into api_case_result (caseid,version,api_link,request_data,response,result,spend,start_time,end_time) \
+                table = self._cc.execute("insert into api_case_result (caseid,version,api_link,request_data,response,result,spend,starttime,endtime) \
                 	            values('%s','%s','%s','%s','%s','%s','%s','%s','%s')" % (
                 _caseid, _version, _url, _request_data, _response, _result, _spend, _start_time, _end_time))
                 self._conn.commit()
@@ -100,8 +100,15 @@ class DataManager():
                 return e
 
 
-    def save_api_result(self):
-        pass
+    def save_ui_result(self,case,status,message,error,starttime,endtime):
+        try:
+            self._cc.execute("insert into ui_case_result (casename,result,output,result_message,starttime,endtime) values('%s','%s','%s','%s','%s','%s')" % (case,status,message,error,starttime,endtime))
+            self._conn.commit()
+            return True
+        except Exception as e:
+            print("sql error----------------------")
+            print(e)
+            return e
 
 
 
