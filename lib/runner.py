@@ -8,6 +8,32 @@ from lib.log_manager import LogManager
 import config
 
 class ApiRunner():
+    '''
+    api执行器类：通过任务初始化对象：
+        task = {"id": 5662356461,
+            "type": "api",
+            "data": {"project": "pro1",
+                     "version": "0.0.1",
+                     "cases": [
+                         {"caseid": "api_001", "version": "0.01", "project": "wuliu", "api_name": "login",
+                          "url": "http://www.kuaidi100.com/query",
+                          "protocol": "http", "headers": {"Content-Type":"application/json;charset=UTF-8"}, "method": "post",
+                          "params":{"type":"yunda","postid":"3835494398576"},
+                          "data": '{"q":"w"}',
+                          "expected": {"type": "object",
+                                       "properties": {"nu": {"type": "string"}, "status": {"type": "string"},
+                                                      "data": {"type": "array"}}}},
+                         {"caseid": "api_001", "version": "0.01", "project": "wuliu", "api_name": "login",
+                          "url": "http://www.kuaidi100.com/query",
+                          "protocol": "http", "headers": {"Content-Type":"application/json;charset=UTF-8"}, "method": "post",
+                          "params":{"type":"yuantong","postid":"823753023765"},
+                          "data": '{"q":"w"}',
+                          "expected": {"type": "object",
+                                       "properties": {"nu": {"type": "string"}, "status": {"type": "string"},
+                                                      "data": {"type": "array"}}}}
+                     ]
+                     }}
+    '''
     def __init__(self,task):
         self.all_cases = task["data"]["cases"]
         self.version = task["data"]["version"]
@@ -16,6 +42,7 @@ class ApiRunner():
         self.logger=LogManager()
 
     def run(self):
+        #执行任务并返回任务执行状态
         result=[]
         for case in self.all_cases:
             client = Apiclient(case)
@@ -27,12 +54,24 @@ class ApiRunner():
 
     def _save_result(self,apiresult):
         db=DataManager()
-        message =db.save_api_result(apiresult)
+        message =db.save_api_result(self.taskid,apiresult)
         if message != True:
             self.logger.error(message)
 
 
 class UiRunner():
+    '''
+    ui执行器类：通过任务初始化对象
+    task = {"id": 5662356461,
+            "type": "ui",
+            "data": {"project": "lianjia",
+                     "version": "0.0.1",
+                     "cases": [
+                         {"suitename": "ui_lianjia_test_001", "version": "0.01", "project": "lianjia", "function": "login"},
+                         {"suitename": "ui_lianjia_test_001", "version": "0.01", "project": "lianjia", "function": "login"},
+                     ]
+                     }}
+    '''
     def __init__(self,task):
         dt = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
         self.all_cases = task["data"]["cases"]
@@ -73,19 +112,24 @@ class UiRunner():
         return all_result
 
     def run(self):
+        #执行任务并返回任务执行状态
         caselist = []
         for case in self.all_cases:
             caselist.append(case['suitename']+'.py')
         result = self.run_by_pattern(caselist)
         self._save_result(result)
+        return 1
 
     def _save_result(self,result):
+        '''
+        #存储测试结果到对应数据库
         print(result.result)
         print(result.success_count)
         print(result.error_count)
         print(result.failure_count)
         print(result.starttime)
         print(result.endtime)
+        '''
         result_map = ['pass', 'fail', 'error']
         db = DataManager()
 
@@ -96,7 +140,7 @@ class UiRunner():
             error = item[3]
             starttime = item[4]
             endtime = item[5]
-            re = db.save_ui_result(re,case,message,error,starttime,endtime)
+            re = db.save_ui_result(self.taskid,re,case,message,error,starttime,endtime)
             if re != True:
                 self.logger.error(re)
 

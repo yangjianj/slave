@@ -44,18 +44,20 @@ class DataManager():
 
     def save_api_result(self,apiresult):
         if ("re" in apiresult) and ("response" in apiresult["re"]):
-            _caseid=apiresult["case"]['caseid']
-            _version = apiresult["case"]['version']
-            _url = apiresult["case"]['url']
-            _request_data = apiresult["case"]['data']
-            _response = apiresult["re"]["response"]
-            _result = apiresult["re"]["test_result"]
-            _spend = apiresult["spend"]
-            _start_time = apiresult["start-time"]
-            _end_time = apiresult["end-time"]
+            caseid=apiresult["case"]['caseid']
+            version = apiresult["case"]['version']
+            url = apiresult["case"]['url']
+            request_data = apiresult["case"]['data']
+            response = apiresult["re"]["response"]
+            result = apiresult["re"]["test_result"]
+            spend = apiresult["spend"]
+            start_time = apiresult["start-time"]
+            end_time = apiresult["end-time"]
             try:
-                table = self._cc.execute("insert into api_case_result (caseid,version,api_link,request_data,response,result,spend,starttime,endtime) \
-	            values('%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(_caseid,_version,_url,_request_data,_response,_result,_spend,_start_time,_end_time))
+                sql = "update api_case_result set caseid = '%s',result = '%s',output = '%s',result_message = '%s',starttime = '%s',endtime = '%s' where taskid = '%s'" % (case, status, message, error, starttime, endtime, taskid)
+                sql1 = "insert into api_case_result (caseid,version,api_link,request_data,response,result,spend,starttime,endtime) \
+	            values('%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(caseid,version,url,request_data,response,result,spend,start_time,end_time)
+                table = self._cc.execute(sql)
                 self._conn.commit()
                 return True
             except Exception as e:
@@ -100,9 +102,11 @@ class DataManager():
                 return e
 
 
-    def save_ui_result(self,case,status,message,error,starttime,endtime):
+    def save_ui_result(self,taskid,caseid,status,message,error,starttime,endtime):
         try:
-            self._cc.execute("insert into ui_case_result (casename,result,output,result_message,starttime,endtime) values('%s','%s','%s','%s','%s','%s')" % (case,status,message,error,starttime,endtime))
+            sql = "update ui_case_result set result = '%s',output = '%s',result_message = '%s',starttime = '%s',endtime = '%s' where taskid = '%s' and caseid = %s"% (status,message,error,starttime,endtime,taskid,caseid)
+            #sql1 = "insert into ui_case_result (caseid,result,output,result_message,starttime,endtime) values('%s','%s','%s','%s','%s','%s')" % (case,status,message,error,starttime,endtime)
+            self._cc.execute(sql)
             self._conn.commit()
             return True
         except Exception as e:
