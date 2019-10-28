@@ -42,65 +42,18 @@ class DataManager():
     def delete_user(self,name):
         pass
 
-    def save_api_result(self,apiresult):
-        if ("re" in apiresult) and ("response" in apiresult["re"]):
-            caseid=apiresult["case"]['caseid']
-            version = apiresult["case"]['version']
-            url = apiresult["case"]['url']
-            request_data = apiresult["case"]['data']
-            response = apiresult["re"]["response"]
-            result = apiresult["re"]["test_result"]
-            spend = apiresult["spend"]
-            start_time = apiresult["start-time"]
-            end_time = apiresult["end-time"]
-            try:
-                sql = "update api_case_result set caseid = '%s',result = '%s',output = '%s',result_message = '%s',starttime = '%s',endtime = '%s' where taskid = '%s'" % (case, status, message, error, starttime, endtime, taskid)
-                sql1 = "insert into api_case_result (caseid,version,api_link,request_data,response,result,spend,starttime,endtime) \
-	            values('%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(caseid,version,url,request_data,response,result,spend,start_time,end_time)
-                table = self._cc.execute(sql)
-                self._conn.commit()
-                return True
-            except Exception as e:
-                print("sql error----------------------")
-                print(e)
-                return e
-        elif  ("re" in apiresult) and ("error" in apiresult["re"]):
-            _caseid = apiresult["case"]['caseid']
-            _version = apiresult["case"]['version']
-            _url = apiresult["case"]['url']
-            _request_data = apiresult["case"]['data']
-            _response = apiresult["re"]["error"]
-            _result = "error"
-            _spend = apiresult["spend"]
-            _start_time = apiresult["start-time"]
-            _end_time = apiresult["end-time"]
-            try:
-                table = self._cc.execute("insert into api_case_result (caseid,version,api_link,request_data,response,result,spend,starttime,endtime) \
-                	            values('%s','%s','%s','%s','%s','%s','%s','%s','%s')" % (
-                _caseid, _version, _url, _request_data, _response, _result, _spend, _start_time, _end_time))
-                self._conn.commit()
-                return True
-            except Exception as e:
-                print("sql error----------------------")
-                print(e)
-                return e
-        elif  ("error" in apiresult):
-            _caseid = apiresult["case"][1]
-            _version = apiresult["case"][2]
-            _apilink = apiresult["case"][6]
-            _request_data = apiresult["case"][10]
-            _response = apiresult["error"]
-            _result = "error"
-            try:
-                table = self._cc.execute("insert into api_case_result (caseid,version,api_link,request_data,response,result) \
-                	            values('%s','%s','%s','%s','%s'')" %(_caseid, _version, _apilink, _request_data, _response, _result))
-                self._conn.commit()
-                return True
-            except Exception as e:
-                print("sql error----------------------")
-                print(e)
-                return e
-
+    def save_api_result(self,taskid,caseid,result,response,spend,starttime,endtime):
+        try:
+            sql = "update api_case_result set result ='%s' ,response = '%s',spend= '%s',starttime = '%s',endtime = '%s' where taskid = '%s' and caseid = '%s'"% (result,response,spend,starttime,endtime,taskid,caseid)
+            #sql1 = "insert into api_case_result (caseid,version,api_link,request_data,response,result,spend,starttime,endtime) values('%s','%s','%s','%s','%s','%s','%s','%s','%s')"%(caseid,version,url,request_data,response,result,spend,start_time,end_time)
+            print(sql)
+            self._cc.execute(sql)
+            self._conn.commit()
+            return True
+        except Exception as e:
+            print("sql error----------------------")
+            print(e)
+            return e
 
     def save_ui_result(self,taskid,caseid,status,message,error,starttime,endtime):
         try:

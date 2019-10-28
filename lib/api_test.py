@@ -26,7 +26,7 @@ class Apiclient():
 		elif self.method=='DELETE' or self.method=='delete':
 			result=self.requ.delfile(url=self.url,params=self.reparam,headers=self.headers)
 		else:
-			result={"error":"method not in post,get,put,delete"}
+			result={"error":"request method not found"}
 		if ("re" in result) and ("response" in result["re"]):
 			print(result)
 			test_result=self.response_check(json.loads(result["re"]["response"]),self.expected)

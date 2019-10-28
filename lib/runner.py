@@ -53,11 +53,23 @@ class ApiRunner():
         return result
 
     def _save_result(self,apiresult):
+        if ("response" in apiresult["re"]):
+            result = apiresult["re"]["test_result"]
+            response = apiresult["re"]["response"]
+        elif ("error" in apiresult["re"]):
+            response = apiresult["re"]["error"]
+            result = "error"
+        else:
+            response = apiresult["error"]
+            result = "error"
+        caseid = apiresult["case"]['caseid']
+        spend = apiresult["spend"]
+        starttime = apiresult["start-time"]
+        endtime = apiresult["end-time"]
         db=DataManager()
-        message =db.save_api_result(self.taskid,apiresult)
+        message =db.save_api_result(self.taskid,caseid,result,response,spend,starttime,endtime)
         if message != True:
             self.logger.error(message)
-
 
 class UiRunner():
     '''

@@ -28,8 +28,6 @@ class Reques():
     @record_time
     def post(self,url,data,params,headers):#post消息
         result={}
-        print(url,data,params,headers)
-        print(type(url),type(data),type(params),type(headers))
         try:
             self.r =requests.post(url, data=data,params=params,headers=headers, timeout=config.Interface_Time_Out)
             spend = self.r.elapsed.total_seconds()
