@@ -31,43 +31,41 @@ class Exector():
 
 
 if __name__ == "__main__":
-
+    '''
     task = {"id": 5662356461,
             "type": "api",
             "slave": "1.1.1.1",
-            "data": {"project": "pro1",
-                     "version": "0.0.1",
-                     "cases": [
-                         {"caseid": "api_00002", "version": "0.01", "project": "wuliu", "api_name": "login",
-                          "url": "http://www.kuaidi100.com/query",
-                          "protocol": "http", "headers": {"Content-Type":"application/json;charset=UTF-8"}, "method": "post",
-                          "params":{"type":"yunda","postid":"3835494398576"},
-                          "data": '{"q":"w"}',
-                          "status":"unfinished",
-                          "expected": {"type": "object",
-                                       "properties": {"nu": {"type": "string"}, "status": {"type": "string"},
-                                                      "data": {"type": "array"}}}},
-                         {"caseid": "api_00001", "version": "0.01", "project": "wuliu", "api_name": "login",
-                          "url": "http://www.kuaidi100.com/query",
-                          "protocol": "http", "headers": {"Content-Type":"application/json;charset=UTF-8"}, "method": "post",
-                          "params":{"type":"yuantong","postid":"823753023765"},
-                          "data": '{"q":"w"}',
-                          "status":"unfinished",
-                          "expected": {"type": "object",
-                                       "properties": {"nu": {"type": "string"}, "status": {"type": "string"},
-                                                      "data": {"type": "array"}}}}
-                     ]
-                     }}
+            "version": "0.0.1",
+             "cases": [
+                     {"caseid": "api_00002",  "project": "wuliu", "api_name": "login",
+                      "url": "http://www.kuaidi100.com/query",
+                      "protocol": "http", "headers": {"Content-Type":"application/json;charset=UTF-8"}, "method": "post",
+                      "params":{"type":"yunda","postid":"3835494398576"},
+                      "data": '{"q":"w"}',
+                      "status":"unfinished",
+                      "expected": {"type": "object",
+                                   "properties": {"nu": {"type": "string"}, "status": {"type": "string"},
+                                                  "data": {"type": "array"}}}},
+                     {"caseid": "api_00001", "project": "wuliu", "api_name": "login",
+                      "url": "http://www.kuaidi100.com/query",
+                      "protocol": "http", "headers": {"Content-Type":"application/json;charset=UTF-8"}, "method": "post",
+                      "params":{"type":"yuantong","postid":"823753023765"},
+                      "data": '{"q":"w"}',
+                      "status":"unfinished",
+                      "expected": {"type": "object",
+                                   "properties": {"nu": {"type": "string"}, "status": {"type": "string"},
+                                                  "data": {"type": "array"}}}}
+                 ]
+                     }
     '''
     task = {"id": 5662356461,
             "type": "ui",
             "slave":"1.1.1.1",
-            "data": {"project": "lianjia",
-                     "version": "0.0.1",
-                     "cases": [
-                         {"suitename": "ui_lianjia_test_001", "version": "0.01", "project": "lianjia", "function": "login","status":"unfinished"},
-                         {"suitename": "ui_lianjia_test_001", "version": "0.01", "project": "lianjia", "function": "login","status":"unfinished"},
+            "version": "0.0.1",
+             "cases": [
+                    {"suitename": "ui_lianjia_test_001", "project": "lianjia","function": "login","status":"unfinished"},
+                    {"suitename": "ui_lianjia_test_001","project": "lianjia", "function": "login","status":"unfinished"},
                      ]
-                     }}
-                        '''
+                     }
+
     Exector().task_handler(task)

@@ -55,10 +55,11 @@ class DataManager():
             print(e)
             return e
 
-    def save_ui_result(self,taskid,caseid,status,message,error,starttime,endtime):
+    def save_ui_result(self,taskid,caseid,status,output,error,starttime,endtime):
         try:
-            sql = "update ui_case_result set result = '%s',output = '%s',result_message = '%s',starttime = '%s',endtime = '%s' where taskid = '%s' and caseid = %s"% (status,message,error,starttime,endtime,taskid,caseid)
+            sql = "update ui_case_result set result = '%s',output = '%s',result_message = '%s',starttime = '%s',endtime = '%s' where taskid = '%s' and caseid = '%s'"% (status,output,error,starttime,endtime,taskid,caseid)
             #sql1 = "insert into ui_case_result (caseid,result,output,result_message,starttime,endtime) values('%s','%s','%s','%s','%s','%s')" % (case,status,message,error,starttime,endtime)
+            print(sql)
             self._cc.execute(sql)
             self._conn.commit()
             return True

@@ -74,3 +74,35 @@
 2019-10-28 23:32:20,138-root-ERROR: near "message": syntax error
 2019-10-28 23:33:34,922-root-ERROR: not all arguments converted during string formatting
 2019-10-28 23:33:35,021-root-ERROR: not all arguments converted during string formatting
+2019-10-29 22:31:14,515-root-ERROR: no such column: pass
+2019-10-29 22:31:14,515-root-ERROR: no such column: pass
+2019-10-29 22:31:14,529-root-ERROR: no such column: pass
+2019-10-29 22:31:14,529-root-ERROR: no such column: pass
+2019-10-29 22:42:08,835-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 22:42:08,835-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 22:42:08,836-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 22:42:08,836-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 22:56:32,701-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 22:56:32,701-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 22:56:40,161-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 22:56:40,161-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:03:35,903-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:03:35,903-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:03:35,904-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:03:35,904-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:08:11,530-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:08:11,530-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:08:11,532-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:08:11,532-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:14:17,882-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:14:17,882-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:14:17,883-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:14:17,883-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:20:00,357-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:20:00,357-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:20:00,359-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:20:00,359-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:24:55,480-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:24:55,480-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:24:55,481-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-10-29 23:24:55,481-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1

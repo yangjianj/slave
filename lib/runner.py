@@ -86,15 +86,15 @@ class UiRunner():
     '''
     def __init__(self,task):
         dt = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-        self.all_cases = task["data"]["cases"]
-        self.version = task["data"]["version"]
+        self.all_cases = task["cases"]
+        self.version = task["version"]
         self.taskid = task["id"]
         self.casedir = config.UICASE_DIR
         self.reportfile = os.path.join(config.UI_REPORT_DIR,dt+'htmltestrunner.html')
         self.table = config.UI_RESULT_TABLE
         self.logger = LogManager()
 
-    #根据文件名匹配case
+    #根据文件名匹配case 每个ui任务包含十个case
     def run_by_pattern(self,filelist):
         discover = None
         for index,item in enumerate(filelist):
@@ -112,9 +112,9 @@ class UiRunner():
         return all_result
 
     #根据case名匹配case
-    def run_by_casename(self):
-        caselist = ['lianjia.ui_lianjia_test_001.Base_t1.test_run3','lianjia.ui_lianjia_test_001.Base_t1.test_run']
-        discover = unittest.TestLoader().loadTestsFromNames(caselist,module=None)
+    def run_by_casename(self,namelist):
+        #caselist = ['lianjia.ui_lianjia_test_001.Base_t1.test_run3','lianjia.ui_lianjia_test_001.Base_t1.test_run']
+        discover = unittest.TestLoader().loadTestsFromNames(namelist,module=None)
         with open(self.reportfile,'wb') as f:
             runner = HTMLTestRunner(stream=f,
                                     verbosity=2,
@@ -146,13 +146,15 @@ class UiRunner():
         db = DataManager()
 
         for item in result.result:
-            re = result_map[item[0]]
-            case = item[1]
+            status = result_map[item[0]]
+            caseid = str(item[1])
+            print('########################')
+            print(caseid)
             message = item[2]
             error = item[3]
             starttime = item[4]
             endtime = item[5]
-            re = db.save_ui_result(self.taskid,re,case,message,error,starttime,endtime)
+            re = db.save_ui_result(self.taskid,caseid,status,message,error,starttime,endtime)
             if re != True:
                 self.logger.error(re)
 
