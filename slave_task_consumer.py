@@ -11,6 +11,8 @@ def callback(ch, method, properties, body):
     print("[x] Received %r" % body)  # 一条消息被一个消费者接收后，该消息就从队列删除
 
     Exector().task_handler(body)  #处理任务
+    ch.basic_ack(delivery_tag=method.delivery_tag)
+
 
 def run():
     con = pika.ConnectionParameters(config.masterip)
