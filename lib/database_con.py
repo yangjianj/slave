@@ -68,9 +68,6 @@ class DataManager():
             print(e)
             return e
 
-
-
-
 if __name__ == '__main__':
     dd=DataManager()
     re=dd.query_Users()

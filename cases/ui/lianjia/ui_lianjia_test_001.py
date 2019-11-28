@@ -29,6 +29,7 @@ class Base_t1(unittest.TestCase):  # 继承unittest.TestCase
 
     @unittest.skipIf(3 > 2, "3大于2，此用例不执行")
     def test_run(self):
+        self.handler.implicitly_wait(10)
         self.handler.get("http://www.lianjia.com")
         self.handler.click("城市","board")
         self.handler.clear("搜索框","city")

@@ -31,7 +31,7 @@ class Exector():
 
 
 if __name__ == "__main__":
-
+    '''
     task = {"id": 5662356461,
             "type": "api",
             "slave": "1.1.1.1",
@@ -67,5 +67,5 @@ if __name__ == "__main__":
                     {"suitename": "ui_lianjia_test_001","project": "lianjia", "function": "login","status":"unfinished"},
                      ]
                      }
-    '''
+
     Exector().task_handler(task)

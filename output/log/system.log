@@ -106,3 +106,5 @@
 2019-10-29 23:24:55,480-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
 2019-10-29 23:24:55,481-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
 2019-10-29 23:24:55,481-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
+2019-11-28 22:59:28,841-root-ERROR: near "value": syntax error
+2019-11-28 22:59:28,841-root-ERROR: near "value": syntax error
