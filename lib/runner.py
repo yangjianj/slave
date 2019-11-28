@@ -35,8 +35,8 @@ class ApiRunner():
                      }}
     '''
     def __init__(self,task):
-        self.all_cases = task["data"]["cases"]
-        self.version = task["data"]["version"]
+        self.all_cases = task["cases"]
+        self.version = task["version"]
         self.taskid = task["id"]
         self.table=config.API_RESULT_TABLE
         self.logger=LogManager()

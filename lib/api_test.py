@@ -78,8 +78,8 @@ if __name__ == '__main__':
 	url="http://127.0.0.1:8090/get_all_user"
 	jj["url"]="http://127.0.0.1:8090/get_reuqet_json"
 	jj["method"]='post'
-	jj["redata"]=json.dumps({'username':'name0','password':'pass'})
-	jj["reparam"] = {'username': 'name1', 'password': 'pass'}
+	jj["data"]=json.dumps({'username':'name0','password':'pass'})
+	jj["params"] = {'username': 'name1', 'password': 'pass'}
 	jj["expected"]={"type":"object",
 	                "properties":{
 		                "re_data":{"type":"string"}
