@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import config
+from lib.case_manager import Uicase
 from lib.runner import UiRunner, ApiRunner
 
 class Exector():
@@ -15,8 +16,9 @@ class Exector():
 
     def run(self, task):
         if task["type"] == "ui":
+            casedir = Uicase().download_case(task)
             runner = UiRunner(task)
-            return runner.run()
+            return runner.run(casedir)
         elif task["type"] == "api":
             runner = ApiRunner(task)
             return runner.run()
@@ -62,6 +64,7 @@ if __name__ == "__main__":
             "type": "ui",
             "slave":"1.1.1.1",
             "version": "0.0.1",
+            "project": "lianjia",
              "cases": [
                     {"suitename": "ui_lianjia_test_001", "project": "lianjia","function": "login","status":"unfinished"},
                     {"suitename": "ui_lianjia_test_001","project": "lianjia", "function": "login","status":"unfinished"},
