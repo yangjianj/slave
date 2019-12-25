@@ -17,6 +17,10 @@ DATABASE = 'F:\work\project\django_web\db.sqlite3'
 UICASE_DIR = os.path.join(BASEDIR,'cases/ui/')
 UI_REPORT_DIR = os.path.join(BASEDIR,'output/report/')
 UI_RESULT_TABLE = 'ui_result_table'
+UI_CASE_FTPSERVER = '127.0.0.1'
+UI_FTP_USERNAME = 'uitest'
+UI_FTP_PASSWORD = 'uitest'
+
 
 #api
 APICASE_DIR = os.path.join(BASEDIR,'cases/api/')
