@@ -9,9 +9,9 @@ class Uicase():
     
     def download_case(self,task):
         #下载uicase
-        ftpclient = FtpClient(config.UI_CASE_FTPSERVER,config.UI_FTP_USERNAME,config.UI_FTP_PASSWORD)
+        ftpclient = FtpClient(config.FTPSERVER,config.FTP_USERNAME,config.FTP_PASSWORD)
         pathlist = self.serach_case_ftppath(task)
-        casedir = os.path.join(config.UICASE_DIR,task.product+task.version+task.id)
+        casedir = os.path.join(config.UI_CASE_DIR,task.product+task.version+task.id)
         ftpclient.download(pathlist,casedir)
         return casedir
     
