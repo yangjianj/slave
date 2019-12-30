@@ -4,6 +4,7 @@ import requests,time,datetime,json
 import threading
 import config
 from lib.log_manager import LogManager
+import lib.sys_param as sysparam
 
 app= Flask(__name__)
 
@@ -37,6 +38,17 @@ def heartbeat():  #slave心跳
         finally:
             time.sleep(config.heartbeat)
 
+@app.route("/get_sys_params")
+def system_param():
+    result = {}
+    result['net_if'] = sysparam.collect_net_if_addrs()
+    result['net_io'] = sysparam.collect_net_io()
+    result['cpu'] = sysparam.collect_cpu()
+    result['memery'] = sysparam.collect_memery()
+    result['disk'] = sysparam.collect_disk()
+    return result
+
+@app.route("/run_cmd")
 def run_cmd():
     pass
 
