@@ -1,17 +1,21 @@
 import psutil
 
-def collect_network():
-    print(psutil.net_io_counters())  # 获取网络总的io情况
-    print(psutil.net_io_counters(pernic=True))  # 获取网络总的io情况
-    print(psutil.net_if_addrs())
-    print(psutil.net_if_stats())
-    print(psutil.net_connections())
-    pass
+def collect_net_io():
+    #返回网卡流量统计
+    result = {}
+    for (k,v) in psutil.net_io_counters(pernic=True).items():
+        result[k] = v._asdict()
+    return  result
+
+def collect_net_if_addrs():
+    #返回网卡信息
+    result = {}
+    for (k,v) in psutil.net_if_addrs().items():
+        result[k] = v
+    return result
 
 def collect_process():
     print(psutil.pids())
-    print(psutil.test())
-    pass
 
 def process_handler(process_id):
     p = psutil.Process(process_id)
@@ -24,17 +28,25 @@ def process_handler(process_id):
     p.num_threads()
 
 def collect_disk():
-    print(psutil.disk_partitions())
-    print(psutil.disk_usage('C:\\'))
-    print(psutil.disk_io_counters())
+    result = []
+    for part in psutil.disk_partitions():
+        result.append(part._asdict())
+        if part.fstype != '':
+            result[-1].update(psutil.disk_usage(part.device)._asdict())
+    result.append(psutil.disk_io_counters()._asdict())
+    return result
 
 def collect_memery():
-    print(psutil.virtual_memory())
+    memoery = psutil.virtual_memory()._asdict()  #nametuple -> dict
+    return memoery
 
 def collect_cpu():
-    print(psutil.cpu_count())
-    print(psutil.cpu_times())
+    return psutil.cpu_percent(interval=1, percpu=True)
 
-    for i in range(2):
-        print(psutil.cpu_percent(interval=1, percpu=True))
 
+#collect_cpu()
+#collect_memery()
+#collect_disk()
+#collect_net_io()
+#collect_net_if_addrs()
+#collect_cpu()
