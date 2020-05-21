@@ -12,5 +12,10 @@ slave_task_consumer.py文件：任务监听处理入口+心跳
 实现介绍：   
 1.ui自动化：yml存放页面元素定位信息，unittest组织用例结构，selenium驱动浏览器    
 2.api自动化：根据任务传输的api case信息通过封装好的方法带入case信息而执行case    
+<<<<<<< HEAD
 3.redis实现任务的收发（redis简单无需安装，适合放在git上）
 sddfsfddf
+=======
+3.redis实现任务的收发（redis简单无需安装，适合放在git上）    
+434567890
+>>>>>>> 614a05f8c442882b66e85cbf5067f420d916f393
