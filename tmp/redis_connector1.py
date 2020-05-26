@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import redis,json
+import redis
 import config as config
 '''
 
@@ -49,12 +49,8 @@ if __name__ == '__main__':
     #print(Connector().keys())
    # re = Connector().get('car1').decode('utf-8')
    # print(Connector().hget('car1','target'))
+    msg = '{"x":100,"y":200}'
+    con.publish('topic1',msg)
 
-    for item in con.subscribe('topic1'):
-        print(item)
-        try:
-            print(json.loads(item["data"]))
-        except Exception as e:
-            print(e)
 
 

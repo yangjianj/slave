@@ -2,8 +2,10 @@
 import pika,threading
 import requests,time,datetime,json
 from lib.task_exector import Exector
+from lib.redis_connector.Connector as Connector
 import config
 
+#rabbitmq消费消息回调函数
 def callback(ch, method, properties, body):
     print("-->ch", ch)
     print("-->method", method)
@@ -13,8 +15,8 @@ def callback(ch, method, properties, body):
     Exector().task_handler(body)  #处理任务
     ch.basic_ack(delivery_tag=method.delivery_tag)
 
-
-def run():
+#rabbitmq消费端
+def run_rabbitmq():
     con = pika.ConnectionParameters(config.masterip)
     connection = pika.BlockingConnection(con)
     channel = connection.channel()
@@ -24,7 +26,19 @@ def run():
     print('[*] Waiting for messages.To exit press CTRL+C')
     channel.start_consuming()
 
-def heartbeat():  #slave心跳
+#redis作为消息队列消费消息
+def run_redis():
+    redis_cli = Connector()
+    for item in redis_cli.subscribe(config.TASK_TOPIC):
+        print(item)
+        try:
+            task = json.loads(item["data"])
+            print(task)
+            Exector().task_handler(task)
+        except Exception as e:
+            print(e)
+#slave心跳
+def heartbeat():
     while(1):
         try:
             url = config.master_url
@@ -47,4 +61,4 @@ def heartbeat():  #slave心跳
 
 if __name__ == '__main__':
     threading.Thread(target = heartbeat,args = ()).start()
-    run()
+    run_redis()

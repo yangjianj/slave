@@ -27,3 +27,7 @@ APICASE_DIR = os.path.join(BASEDIR,'cases/api/')
 Interface_Time_Out = 10
 API_RESULT_TABLE = 'api_result_table'
 
+
+REDIS_HOST = '127.0.0.1'
+REDIS_PORT = 6379
+TASK_TOPIC = 'task'
