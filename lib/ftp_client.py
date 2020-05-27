@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from ftplib import FTP
+import config
 class FtpClient():
     def __init__(self,host,user,passwd):
         self.host = host
@@ -61,7 +62,7 @@ class FtpClient():
 
 if __name__ == '__main__':
     #ftp = FTP(host="127.0.0.1",user=  "test",passwd="123456")
-    client = FtpClient(host="127.0.0.1",user="test",passwd="123456")
+    client = FtpClient(host=config.FTPSERVER,user=config.FTP_USERNAME,passwd=config.FTP_PASSWORD)
     root_list = client.dir('corepro-message-plugin-2.0-SNAPSHOT-jar-with-dependencies-112201.jar')
     for item in root_list:
         print(item)

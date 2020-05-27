@@ -18,6 +18,7 @@ slave_task_consumer.py文件：任务监听处理入口+心跳
 
 详情：    
 1.任务格式：    
+'''python
     task = {"id": 5662356461,
             "type": "api",
             "slave": "1.1.1.1",
@@ -54,3 +55,4 @@ slave_task_consumer.py文件：任务监听处理入口+心跳
                     {"suitename": "ui_lianjia_test_001","project": "lianjia", "function": "login","status":"unfinished"},
                      ]
                      }
+'''
