@@ -45,14 +45,35 @@ slave_task_consumer.py文件：任务监听处理入口+心跳
                  ]
                      }
 
-    task = {"id": 5662356461,
-            "type": "ui",
-            "slave":"1.1.1.1",
-            "version": "0.0.1",
-            "project": "lianjia",
-             "cases": [
-                    {"suitename": "ui_lianjia_test_001", "project": "lianjia","function": "login","status":"unfinished"},
-                    {"suitename": "ui_lianjia_test_001","project": "lianjia", "function": "login","status":"unfinished"},
-                     ]
-                     }
+task = {"id": 5662356461,
+        "type": "ui",
+        "slave":"1.1.1.1",
+        "version": "0.0.1",
+        "project": "lianjia",
+         "cases": [
+                {"suitename": "ui_lianjia_test_001", "project": "lianjia","function": "login","status":"unfinished"},
+                {"suitename": "ui_lianjia_test_001","project": "lianjia", "function": "login","status":"unfinished"},
+                 ]
+                 }
 '''
+
+
+## 疑难：
+1.前台创建的接口case级别和suite级别setup  setdown--暂不考虑  
+例：  
+1.1前置造数据操作--手工操作固定服务器数据库   
+1.2前置某目录下所有请求都需要Token或提前登录后的cookie--页面添加公共操作部分   
+
+2.ui用例文件服务器路径与case映射解决方案   
+caseid : 页面caseid == 脚本caseid      
+映射脚本case路径 ：上传--下载--路径    
+待用方案：  
+1.全部下载git pull拉取，用例名匹配执行   
+1.1git上传文件    
+1.2git全部下载--按用例名匹配执行    
+2.按需下载：  
+2.1ftp/git文件上传 -- 程序检测文件路径变化并上传路径到数据库    
+2.2文件下载    
+下载：全局库+目标文件+目标suite文件+其他相关文件    
+
+

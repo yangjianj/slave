@@ -31,3 +31,6 @@ API_RESULT_TABLE = 'api_result_table'
 REDIS_HOST = '127.0.0.1'
 REDIS_PORT = 6379
 TASK_TOPIC = 'task'
+
+MONGO_IP = '127.0.0.1'
+MONGO_PORT = 27017
