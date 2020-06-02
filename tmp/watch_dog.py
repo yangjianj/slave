@@ -37,7 +37,27 @@ class FileEventHandler(FileSystemEventHandler):
             print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),"： file modified:{0}".format(event.src_path))
 
 
+
+class MonitorDir():
+    def __init__(self,dir):
+        self.monitor= dir
+        self.event_handler= FileEventHandler()
+        self.observer = Observer()
+
+    def startMonitor(self):
+        self.observer.schedule(self.event_handler, self.monitor, True)
+        self.observer.start()
+        try:
+            while True:
+                time.sleep(1)
+        except KeyboardInterrupt:
+            self.observer.stop()
+        self.observer.join()
+
 if __name__ == "__main__":
+    s= MonitorDir('e:/tmp')
+    s.startMonitor()
+    '''
     observer = Observer()
     event_handler = FileEventHandler()
     observer.schedule(event_handler, "e:/tmp", True)
@@ -48,4 +68,4 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         observer.stop()
     observer.join()
-
+'''
