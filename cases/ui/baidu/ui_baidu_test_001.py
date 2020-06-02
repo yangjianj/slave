@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import time,os
 import unittest
-from lib.page_handler import Pagehandler
+from lib.pageHandler import Pagehandler
 
 class Base_t1(unittest.TestCase):  # 继承unittest.TestCase
 

@@ -2,7 +2,7 @@
 import pika,threading
 import requests,time,datetime,json
 from lib.task_exector import Exector
-from lib.redis_connector.Connector as Connector
+from lib.redisConnector.Connector as Connector
 import config
 
 #rabbitmq消费消息回调函数

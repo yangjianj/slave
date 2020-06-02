@@ -64,21 +64,22 @@ if __name__ == '__main__':
 
 
 '''
-mongo查询方法：
+mongo方法：
 db.getCollection('col1').find({'child.a.idx':11})
 db.getCollection('col1').find({'id':123,'child.a.idx':11})   #与关系查询
 db.getCollection('col1').update_many({'nn':123},{'$addToSet':{'added':1234546578}})  #集合中增加数组元素(到最外层)
 db.getCollection('col1').update_many({'nn':123},{'$addToSet':{'child.a.added':1234546578}})  #集合中增加数组元素(到内层)
+db.getCollection('col1').update({'child.id':11},{'$set':{'child.$.age':100}}) #数组内全部对象元素添加内容（child为数组，使用$占位）
 #########################
 # 以 $ 开头
-$set # 更新字段
+$set # 更新/添加字段
 $unset # 删除字段
 $inc  # 自增  {$inc: {money: 10}} | 自减 {$inc: {money: -10}}
 $exists # 是否存在
 $in # 是否在...范围
 $and
 $or
-$push  # 向数组中尾部添加一个元素
+$push  # 向数组中尾部添加一个元素（数组）
 $addToSet # 向集合中添加元素（数组）
 $pop  # 删除数组中的头部或尾部元素
 $pull #删除所有满足条件值

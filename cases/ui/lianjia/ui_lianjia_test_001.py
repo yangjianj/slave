@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import time,os
 import unittest
-from lib.page_handler import Pagehandler
+from lib.pageHandler import Pagehandler
 
 CURR_DIR = os.path.dirname(os.path.abspath(__file__))
 pagefile1 = os.path.join(CURR_DIR,'lianjia.yaml')

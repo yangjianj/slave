@@ -1,6 +1,6 @@
 # -*-coding:UTF-8 -*-
 import os
-from lib.ftp_client import FtpClient
+from lib.ftpClient import FtpClient
 import config
 
 class Uicase():
