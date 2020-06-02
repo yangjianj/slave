@@ -3,7 +3,7 @@ import unittest
 from lib.HtmlTestRunner import HTMLTestRunner
 from lib.api_test import Apiclient
 from lib.tool import *
-from lib.database_con import  DataManager
+from lib.mysqlConnector import  DataManager
 from lib.log_manager import LogManager
 import config
 

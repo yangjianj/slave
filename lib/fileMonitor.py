@@ -2,10 +2,8 @@
 import sys
 import time
 import logging
-
 from watchdog.events import *
 from watchdog.observers import Observer
-
 
 class FileEventHandler(FileSystemEventHandler):
     def __init__(self):
