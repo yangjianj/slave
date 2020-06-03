@@ -3,7 +3,7 @@ import os
 from ftplib import FTP
 import config
 class FtpClient():
-    def __init__(self,host,user,passwd):
+    def __init__(self,host=config.FTPSERVER,user=config.FTP_USERNAME,passwd=config.FTP_PASSWORD):
         self.host = host
         self.user = user
         self.passwd = passwd
@@ -18,16 +18,25 @@ class FtpClient():
         print('upload succeed !')
         return True
     
-    def download(self,filelist,localdir='tmp/'):
+    def download(self,filelist,localdir='../tmp/'):
         # file: uitest_base/suite_names/output.xml
         for file in filelist:
+            if(not self.path_exist(file)):
+                print('file not exist!')
+                return None
             dirname,filename = os.path.split(file)
             if not os.path.exists(localdir+dirname):
                 os.makedirs(localdir+dirname)
-            fd = open(localdir+file,'wb')
-            self.client.retrbinary('RETR %s'%(file),fd.write)
-            fd.close()
-        print('download succeed !')
+            try:
+                fd = open(localdir+file,'wb')
+                self.client.retrbinary('RETR %s'%(file),fd.write)
+                print('download succeed !')
+            except Exception as e:
+                print('error:')
+                print(e)
+                print('download {0} failed!'.format(file))
+            finally:
+                fd.close()
         return True
     
     def delete(self,file):
@@ -62,14 +71,17 @@ class FtpClient():
 
 if __name__ == '__main__':
     #ftp = FTP(host="127.0.0.1",user=  "test",passwd="123456")
-    client = FtpClient(host=config.FTPSERVER,user=config.FTP_USERNAME,passwd=config.FTP_PASSWORD)
-    root_list = client.dir('corepro-message-plugin-2.0-SNAPSHOT-jar-with-dependencies-112201.jar')
+    client = FtpClient()
+    root_list = client.dir('./')
     for item in root_list:
+        print(1111)
         print(item)
-    print('delete')
+        dirname = item.split('\s+')
+        dirname = list(filter(None,item.split(' ')))
+        print(dirname)
     #client.delete('uitest_base/log.html')
     #client.mkd('test/test1/test2')
     #print(client.path_exist('test/test1'))
-    #client.download('uitest_base/suite_names/output.xml')
-    client.upload('uitest_base/suite_names/output_up.xml','tmp/uitest_base/suite_names/output.xml')
+    client.download(['sonar-scanner-cli-4.2.0.1873-windows.zip'])
+    #client.upload('uitest_base/suite_names/output_up.xml','../tmp/redis_connector1.py')
     client.close()

@@ -14,9 +14,9 @@ class DataManager():
         return cls._instance
 
     def exec_by_sql(self,sql):
-        self._cc.execute(sql)
+        result= self._cc.execute(sql)
         self._conn.commit()
-        return True
+        return result
 
     def close_conn(self):
         self._conn.close()
@@ -70,6 +70,6 @@ class DataManager():
 
 if __name__ == '__main__':
     dd=DataManager()
-    re=dd.query_Users()
+    re=dd.query_users()
     for i in re:
         print(i)

@@ -76,6 +76,14 @@ caseid : 页面caseid == 脚本caseid
 2.按需下载：  
 2.1ftp/git文件上传 -- 程序检测文件路径变化并上传路径到数据库    
 2.2文件下载    
-下载：全局库+目标文件+目标suite文件+其他相关文件    
-下载下来的文件只有一层目录（suite+脚本）
+下载：全局库+目标文件+目标suite文件+其他配置相关文件    
+下载下来的文件suite都在同层
 
+#规范   
+1.脚本存放规范：   
+suitename(dir)   
+  --suitename.py
+  --config
+    --config1.yml
+  --casefile1
+  --casefile2

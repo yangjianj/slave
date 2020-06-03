@@ -10,8 +10,8 @@ taskqueue = 'test1'
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
 LOG_FILE = os.path.join(BASEDIR,'output/log/system.log')
 OUTPUT = os.path.join(BASEDIR,'output/')
-#DATABASE = 'E:\yangjian\project\web_demo\django_web\db.sqlite3'
-DATABASE = 'F:\work\project\django_web\db.sqlite3'
+DATABASE = 'E:\yangjian\project\web_demo\django_web\db.sqlite3'
+#DATABASE = 'F:\work\project\django_web\db.sqlite3'
 
 #ui
 UICASE_DIR = os.path.join(BASEDIR,'cases/ui/')
@@ -21,12 +21,12 @@ FTPSERVER = '127.0.0.1'
 FTP_USERNAME = 'uitest'
 FTP_PASSWORD = 'uitest'
 UI_CASE_DIR = 'UICASE/'
+MONITOR_BASEDIR = 'E:/tmp'
 
 #api
 APICASE_DIR = os.path.join(BASEDIR,'cases/api/')
 Interface_Time_Out = 10
 API_RESULT_TABLE = 'api_result_table'
-
 
 REDIS_HOST = '127.0.0.1'
 REDIS_PORT = 6379
@@ -37,3 +37,6 @@ MONGO_PORT = 27017
 MONGO_USER = ''
 MONGO_PWD = ''
 AUTO_DB = 'autotest'
+
+
+LOCAL_CASE_PATH = 'E:\\localcase'
