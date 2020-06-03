@@ -49,6 +49,7 @@ class FtpClient():
         if path == None:
             path = self.client.pwd()
         file_list = []
+        print('dir:',path)
         self.client.dir(path,file_list.append)
         return file_list
 

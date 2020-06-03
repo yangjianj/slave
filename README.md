@@ -82,8 +82,21 @@ caseid : 页面caseid == 脚本caseid
 #规范   
 1.脚本存放规范：   
 suitename(dir)   
-  --suitename.py
-  --config
+  --suitename.py  #suite文件名与suite目录名一致，以.py结尾
+  --config   #下所有文件会被下载
     --config1.yml
-  --casefile1
+  --casefile1 #case按tasklist指定下载
   --casefile2
+  
+  
+ #部署方法：    
+ 1.服务器部署：   
+ 1.1 redis提供消息队列    
+ 1.2 ftpserver 提供脚本存放，供slave下载脚本，ftpserver目录需加文件夹变动监控程序fileMonitor.py（同步case--casepath到数据库）
+ 1.3 sqlite数据存放（实际环境可用mysql）    
+ 
+ 2.应用部署：   
+ 2.1 slave部署：flask服务+消息队列消费服务程序
+ 2.2 master后台部署
+ 2.3 master前台部署    
+ 
