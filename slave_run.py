@@ -3,8 +3,8 @@ from flask import Flask
 import requests,time,datetime,json
 import threading
 import config
-from lib.log_manager import LogManager
-import lib.sys_param as sysparam
+from lib.logManager import LogManager
+import lib.sysParam as sysparam
 
 app= Flask(__name__)
 

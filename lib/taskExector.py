@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import config
-from lib.case_manager import Uicase
+from lib.taskManager import uiTaskManager
 from lib.runner import UiRunner, ApiRunner
 
 class Exector():
@@ -8,17 +8,13 @@ class Exector():
         pass
 
     def task_handler(self, task):
-        # {"id":1256635665,"type":"ui","data":{"project":"pro1","version":"0.0.1","function":"login"}}
-        # {"id":5662356461,"type":"ui","data":{"project":"pro1","version":"0.0.1","cases":[csv-row1,csv-row1,]}}
         re = self.run(task)
         self.finish_task(task)
         self.upload_report(task)
 
     def run(self, task):
         if task["type"] == "ui":
-            casedir = Uicase().download_case(task)
-            runner = UiRunner(task)
-            return runner.run(casedir)
+            uiTaskManager(task).run()
         elif task["type"] == "api":
             runner = ApiRunner(task)
             return runner.run()
@@ -66,8 +62,8 @@ if __name__ == "__main__":
             "version": "0.0.1",
             "project": "lianjia",
              "cases": [
-                    {"suitename": "ui_lianjia_test_001", "project": "lianjia","function": "login","status":"unfinished"},
-                    {"suitename": "ui_lianjia_test_001","project": "lianjia", "function": "login","status":"unfinished"},
+                    {"caseid": "test1", "function": "login","status":"unfinished"},
+                    {"caseid": "test2", "function": "login","status":"unfinished"},
                      ]
                      }
 

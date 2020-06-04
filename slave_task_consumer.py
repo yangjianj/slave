@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import pika,threading
 import requests,time,datetime,json
-from lib.task_exector import Exector
+from lib.taskExector import Exector
 from lib.redisConnector.Connector as Connector
 import config
 

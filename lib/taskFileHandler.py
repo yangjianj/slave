@@ -5,7 +5,8 @@ from ftpClient import FtpClient
 import config as CONFIG
 
 '''
-组装成最终格式[{'suite':eee,'suitefile':suitenamepath,'cases':[eee,222,333]},{...}]
+in:caseid_list=['aacase1','index','aauitest2',]
+out:组装成最终格式[{'suite':eee,'suitefile':suitenamepath,'cases':[eee,222,333]},{...}]
 
 '''
 

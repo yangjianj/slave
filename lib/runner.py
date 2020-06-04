@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import unittest
 from lib.HtmlTestRunner import HTMLTestRunner
-from lib.api_test import Apiclient
+from lib.apiTest import Apiclient
 from lib.tool import *
 from lib.mysqlConnector import  DataManager
-from lib.log_manager import LogManager
+from lib.logManager import LogManager
 import config
 
 class ApiRunner():
