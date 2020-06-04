@@ -29,7 +29,7 @@ class FileEventHandler(FileSystemEventHandler):
             print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),"： directory created:{0}".format(event.src_path))
         else:
             print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time())),"： file created:{0}".format(event.src_path))
-            update(event.src_path)
+            insert_db(event.src_path)
 
     def on_deleted(self, event):
         if event.is_directory:
@@ -61,11 +61,18 @@ class MonitorDir():
             self.observer.stop()
         self.observer.join()
 
-def update(srcpath,dstpath=None):
-    path = srcpath.replace(CONFIG.MONITOR_BASEDIR, '$base$')
-    filename = os.path.basename(srcpath)
-    caseid= filename.split('.')[0]
-    _db.exec_by_sql('insert into case_path(caseid,casename,path) values("{0}","{1}","{2}")'.format(caseid,filename,path))
+def file_convert_caseid(filepath):
+    relative_path = filepath.replace(CONFIG.MONITOR_BASEDIR, '$base$')
+    filename = os.path.basename(filepath)
+    caseid = filename.split('.')[0]
+    return {'relative_path': relative_path,'filename': filename,'caseid': caseid}
+
+def insert_db(srcpath,dstpath=None):
+    msg= file_convert_caseid(srcpath)
+    relative_path = msg['relative_path']
+    filename = msg['filename']
+    caseid= msg['caseid']
+    _db.exec_by_sql('insert into case_path(caseid,casename,path) values("{0}","{1}","{2}")'.format(caseid,filename,relative_path))
 
 if __name__ == "__main__":
     s= MonitorDir()
