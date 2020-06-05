@@ -15,11 +15,15 @@ class uiTaskManager():
     
     def _create_work_dir(self):
         wt = time.strftime("%Y-%m-%d-%H-%M-%S")
-        self.work_dir = os.path.join(CONFIG.LOCAL_CASE_PATH,self.version,wt)
+        self.work_dir = os.path.join(CONFIG.LOCAL_CASE_PATH,'wersion_'+self.version+'_'+wt)
+        os.mkdir(self.work_dir)
         
     def download_case(self):
         self._create_work_dir()
-        taskFileHandler.download_tasklist(self.cases,self.work_dir)
+        caseidlist = []
+        for item in self.cases:
+            caseidlist.append(item['caseid'])
+        taskFileHandler.download_tasklist(caseidlist,self.work_dir)
     
     def serach_case_ftppath(self,caselist):
         #寻找uicase路径并返回
@@ -28,5 +32,5 @@ class uiTaskManager():
     
     def run(self):
         self.download_case()
-        runner = UiRunner(task)
-        return runner.run(casedir)
+        runner = UiRunner(self.work_dir)
+        return runner.run()

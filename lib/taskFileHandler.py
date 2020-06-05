@@ -31,15 +31,15 @@ def convert_task_to_download_list(tasklist):
             print('not found caseid: ',item)  #log
             continue
         casepath = row
-        suite_dir= casepath[0].split("\\")[-2]
-        suitefile= os.path.join(os.path.dirname(casepath[0]),suite_dir+'.py')
+        suite_name= casepath[0].split("\\")[-2]
+        suitefile= os.path.join(os.path.dirname(casepath[0]),suite_name+'.py')
         saved = False
         for i in range(len(result)):
-            if result[i]['suite'] == suite_dir:
+            if result[i]['suitefile'] == suitefile:
                 result[i]['cases'].append(casepath[0])
                 saved = True
         if saved == False:
-            result.append({'suite':suite_dir,'suitefile':suitefile,'cases':[casepath[0]]})
+            result.append({'suite':suite_name,'suitefile':suitefile,'cases':[casepath[0]]})
     return result
 
 #下载suite--case列表对应的文件
@@ -61,6 +61,8 @@ def download_task_script(download_list,basedir=CONFIG.LOCAL_CASE_PATH):
 #config目录内文件下载
 def ftp_download_tree_file(tree,basedir=CONFIG.LOCAL_CASE_PATH):
     dirlist= _ftpclient.dir(tree)
+    if not dirlist:
+        return None
     print(dirlist)
     for item in dirlist:
         filename = list(filter(None, item.split(' ')))[-1]

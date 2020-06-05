@@ -22,7 +22,6 @@ class FtpClient():
         # file: uitest_base/suite_names/output.xml
         for file in filelist:
             if(not self.path_exist(file)):
-                print('file not exist!')
                 return None
             dirname,filename = os.path.split(file)
             if not os.path.exists(localdir+dirname):
@@ -48,6 +47,8 @@ class FtpClient():
     def dir(self,path=None):
         if path == None:
             path = self.client.pwd()
+        if not self.path_exist(path):
+            return None
         file_list = []
         print('dir:',path)
         self.client.dir(path,file_list.append)
@@ -58,7 +59,9 @@ class FtpClient():
             self.client.dir(path)
             return True
         except Exception as e:
+            print(path,' not exist!')
             return False
+
 
     def mkd(self,pathname):
         try:
@@ -73,7 +76,7 @@ class FtpClient():
 if __name__ == '__main__':
     #ftp = FTP(host="127.0.0.1",user=  "test",passwd="123456")
     client = FtpClient()
-    root_list = client.dir('./')
+    root_list = client.dir('suit1/suit1.py')
     for item in root_list:
         print(1111)
         print(item)
@@ -83,6 +86,6 @@ if __name__ == '__main__':
     #client.delete('uitest_base/log.html')
     #client.mkd('test/test1/test2')
     #print(client.path_exist('test/test1'))
-    client.download(['sonar-scanner-cli-4.2.0.1873-windows.zip'])
+    # client.download(['sonar-scanner-cli-4.2.0.1873-windows.zip'])
     #client.upload('uitest_base/suite_names/output_up.xml','../tmp/redis_connector1.py')
     client.close()
