@@ -10,8 +10,8 @@ taskqueue = 'test1'
 BASEDIR = os.path.dirname(os.path.abspath(__file__))
 LOG_FILE = os.path.join(BASEDIR,'output/log/system.log')
 OUTPUT = os.path.join(BASEDIR,'output/')
-DATABASE = 'E:\yangjian\project\web_demo\django_web\db.sqlite3'
-#DATABASE = 'F:\work\project\django_web\db.sqlite3'
+#DATABASE = 'E:\yangjian\project\web_demo\django_web\db.sqlite3'
+DATABASE = 'F:\work\project\django_web\db.sqlite3'
 
 #ui
 UICASE_DIR = os.path.join(BASEDIR,'cases/ui/')
@@ -40,3 +40,4 @@ AUTO_DB = 'autotest'
 
 
 LOCAL_CASE_PATH = 'E:\\localcase'
+LOCAL_REPORT_PATH = 'E:\\report'

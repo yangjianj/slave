@@ -12,11 +12,16 @@ class uiTaskManager():
         self.project = task['project']
         self.cases = task['cases']
         self.work_dir = None
+        self.report_dir = None
     
     def _create_work_dir(self):
         wt = time.strftime("%Y-%m-%d-%H-%M-%S")
-        self.work_dir = os.path.join(CONFIG.LOCAL_CASE_PATH,'wersion_'+self.version+'_'+wt)
-        os.mkdir(self.work_dir)
+        self.work_dir = os.path.join(CONFIG.LOCAL_CASE_PATH,'version_'+self.version+'_'+wt)
+        self.report_dir = os.path.join(CONFIG.LOCAL_REPORT_PATH,'version_'+self.version+'_'+wt)
+        print(self.work_dir)
+        print(self.report_dir)
+        os.mkdir(r""+self.work_dir)
+        os.mkdir(r""+self.report_dir)
         
     def download_case(self):
         self._create_work_dir()
@@ -32,5 +37,5 @@ class uiTaskManager():
     
     def run(self):
         self.download_case()
-        runner = UiRunner(self.work_dir)
+        runner = UiRunner(self.work_dir,self.report_dir)
         return runner.run()

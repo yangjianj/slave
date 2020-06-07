@@ -76,13 +76,16 @@ class UiRunner():
     初始化信息：执行的case目录，所需执行文件list
     执行内容：执行指定脚本信息，并返回执行结果信息
     '''
-    def __init__(self,dir,task=None):
+    def __init__(self,casedir,reportdir=None,task=None):
         dt = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
         # self.all_cases = task["cases"]
         # self.version = task["version"]
         self.task = task
-        self.casedir = dir
-        self.reportfile = os.path.join(config.UI_REPORT_DIR,dt+'htmltestrunner.html')
+        self.casedir = casedir
+        if reportdir == None:
+            self.reportfile = os.path.join(casedir,'report',dt+'htmltestrunner.html')
+        else:
+            self.reportfile = os.path.join(reportdir, dt + 'htmltestrunner.html')
         self.table = config.UI_RESULT_TABLE
         self.logger = LogManager()
 
