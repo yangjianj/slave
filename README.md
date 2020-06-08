@@ -61,6 +61,7 @@ task = {"id": 5662356461,
 
 # 注意点：   
 1.按需下载脚本方案中下载脚本的速度    
+2.unittest discover子目录下脚本时需要目录有__init__.py文件才行   
 
 ## 疑难：
 1.前台创建的接口case级别和suite级别setup  setdown--暂不考虑  
