@@ -17,7 +17,7 @@ _ftpclient = FtpClient()
 def replace_casepath(caselist):
     result =[]
     for item in caselist:
-        result.append(item.replace('$base$',''))
+        result.append(item.replace('$base$\\',''))
     return result
 
 #case任务列表转为suite -- case信息表
@@ -47,14 +47,18 @@ def download_task_script(download_list,basedir=CONFIG.LOCAL_CASE_PATH):
     for task in download_list:
         #download suitfile
         suitfilepath = replace_casepath([task['suitefile']])
-        print(suitfilepath)
         _ftpclient.download(suitfilepath,basedir)
         #download casefile
         casepath = replace_casepath(task['cases'])
         _ftpclient.download(casepath,basedir)
-        #download config file
+        
         suitpath= os.path.dirname(task['suitefile'])
         suitpath= replace_casepath([suitpath])[0]
+        #create __init__.py
+        modulefile = os.path.join(basedir,suitpath,'__init__.py')
+        fd = open(modulefile,'wb')
+        fd.close()
+        # download config file
         configpath= os.path.join(suitpath,'config')
         ftp_download_tree_file(configpath,basedir)
 

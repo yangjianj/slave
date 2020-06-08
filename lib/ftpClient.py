@@ -21,13 +21,14 @@ class FtpClient():
     def download(self,filelist,localdir='../tmp/'):
         # file: uitest_base/suite_names/output.xml
         for file in filelist:
-            if(not self.path_exist(file)):
+            if(not self.server_path_exist(file)):
                 return None
             dirname,filename = os.path.split(file)
-            if not os.path.exists(localdir+dirname):
-                os.makedirs(localdir+dirname)
+            dst_dir = os.path.join(localdir,dirname)
+            if not os.path.exists(dst_dir):
+                os.makedirs(dst_dir)
             try:
-                fd = open(localdir+file,'wb')
+                fd = open(os.path.join(localdir,file),'wb')
                 self.client.retrbinary('RETR %s'%(file),fd.write)
                 print('download succeed !')
             except Exception as e:
@@ -47,14 +48,14 @@ class FtpClient():
     def dir(self,path=None):
         if path == None:
             path = self.client.pwd()
-        if not self.path_exist(path):
+        if not self.server_path_exist(path):
             return None
         file_list = []
         print('dir:',path)
         self.client.dir(path,file_list.append)
         return file_list
 
-    def path_exist(self,path):
+    def server_path_exist(self,path):
         try:
             self.client.dir(path)
             return True

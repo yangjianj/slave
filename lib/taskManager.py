@@ -18,10 +18,8 @@ class uiTaskManager():
         wt = time.strftime("%Y-%m-%d-%H-%M-%S")
         self.work_dir = os.path.join(CONFIG.LOCAL_CASE_PATH,'version_'+self.version+'_'+wt)
         self.report_dir = os.path.join(CONFIG.LOCAL_REPORT_PATH,'version_'+self.version+'_'+wt)
-        print(self.work_dir)
-        print(self.report_dir)
-        os.mkdir(r""+self.work_dir)
-        os.mkdir(r""+self.report_dir)
+        os.makedirs(self.work_dir)
+        os.makedirs(self.report_dir)
         
     def download_case(self):
         self._create_work_dir()
@@ -38,4 +36,5 @@ class uiTaskManager():
     def run(self):
         self.download_case()
         runner = UiRunner(self.work_dir,self.report_dir)
+        #runner = UiRunner("E:\\localcase\\version_0.0.1_2020-06-08-23-05-22", self.report_dir)
         return runner.run()
