@@ -6,7 +6,9 @@ from lib.tool import *
 from lib.mysqlConnector import  DataManager
 from lib.logManager import LogManager
 import config
-
+'''
+负责任务执行，生产log文件
+'''
 class ApiRunner():
     '''
     api执行器类：通过任务初始化对象：
@@ -76,14 +78,13 @@ class UiRunner():
     初始化信息：执行的case目录，所需执行文件list
     执行内容：执行指定脚本信息，并返回执行结果信息
     '''
-    def __init__(self,casedir,reportdir=None,task=None):
+    def __init__(self,taskid,workdir,reportdir=None,tasklist=None):
         dt = datetime.datetime.now().strftime('%Y-%m-%d-%H-%M-%S')
-        # self.all_cases = task["cases"]
-        # self.version = task["version"]
-        self.task = task
-        self.casedir = casedir
+        self.taskid = taskid
+        self.tasklist = tasklist
+        self.workdir = workdir
         if reportdir == None:
-            self.reportfile = os.path.join(casedir,'report',dt+'htmltestrunner.html')
+            self.reportfile = os.path.join(workdir,'report',dt+'htmltestrunner.html')
         else:
             self.reportfile = os.path.join(reportdir, dt + 'htmltestrunner.html')
         self.table = config.UI_RESULT_TABLE
@@ -94,9 +95,9 @@ class UiRunner():
         discover = None
         for index,item in enumerate(filelist):
             if index == 0:
-                discover = unittest.defaultTestLoader.discover(self.casedir, pattern=item, top_level_dir=None)
+                discover = unittest.defaultTestLoader.discover(self.workdir, pattern=item, top_level_dir=None)
             else:
-                discover_tmp = unittest.defaultTestLoader.discover(self.casedir, pattern=item, top_level_dir=None)
+                discover_tmp = unittest.defaultTestLoader.discover(self.workdir, pattern=item, top_level_dir=None)
                 discover.addTests(discover_tmp._tests)
         all_result = self._run_generate_log(discover)
         return all_result
@@ -123,8 +124,8 @@ class UiRunner():
         return all_result
 
     def run(self):
-        if self.task == None:
-            result = self.run_by_dir(self.casedir)
+        if self.tasklist == None:
+            result = self.run_by_dir(self.workdir)
         self._save_result(result)
         return 1
 

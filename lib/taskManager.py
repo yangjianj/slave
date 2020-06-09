@@ -3,7 +3,9 @@ import os,time
 import config as CONFIG
 import lib.taskFileHandler as taskFileHandler
 from lib.runner import UiRunner, ApiRunner
-
+'''
+负责任务管理：创建工作目录，报告目录，下载case，使用runner执行任务，任务结果存储到数据库
+'''
 class uiTaskManager():
     def __init__(self,task):
         self.id = task['id']
@@ -35,6 +37,6 @@ class uiTaskManager():
     
     def run(self):
         self.download_case()
-        runner = UiRunner(self.work_dir,self.report_dir)
+        runner = UiRunner(self.id,self.work_dir,self.report_dir)
         #runner = UiRunner("E:\\localcase\\version_0.0.1_2020-06-08-23-05-22", self.report_dir)
         return runner.run()
