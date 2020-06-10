@@ -87,7 +87,7 @@ class UiRunner():
             self.reportfile = os.path.join(workdir,'report',dt+'htmltestrunner.html')
         else:
             self.reportfile = os.path.join(reportdir, dt + 'htmltestrunner.html')
-        self.table = config.UI_RESULT_TABLE
+        self.table = config.UI_TASK_CASE_TABLE
         self.logger = LogManager()
 
     #根据文件名匹配case 每个ui任务包含十个case
@@ -145,7 +145,7 @@ class UiRunner():
         for item in result.result:
             status = result_map[item[0]]
             caseid = str(item[1])
-            print('########################')
+            print('###########save_result#############')
             print(caseid)
             message = item[2]
             error = item[3]

@@ -12,11 +12,14 @@ LOG_FILE = os.path.join(BASEDIR,'output/log/system.log')
 OUTPUT = os.path.join(BASEDIR,'output/')
 #DATABASE = 'E:\yangjian\project\web_demo\django_web\db.sqlite3'
 DATABASE = 'F:\work\project\django_web\db.sqlite3'
+TASK_TABLE = 'task_table'  # ui and api task
+UI_TASK_CASE_TABLE = 'ui_task_case_table'
+API_TASK_CASE_TABLE = 'ui_task_case_table'
 
 #ui
 UICASE_DIR = os.path.join(BASEDIR,'cases/ui/')
 UI_REPORT_DIR = os.path.join(BASEDIR,'output/report/')
-UI_RESULT_TABLE = 'ui_result_table'
+
 FTPSERVER = '127.0.0.1'
 FTP_USERNAME = 'uitest'
 FTP_PASSWORD = 'uitest'

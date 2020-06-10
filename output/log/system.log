@@ -108,3 +108,17 @@
 2019-10-29 23:24:55,481-root-ERROR: no such column: lianjia.ui_lianjia_test_001.Base_t1
 2019-11-28 22:59:28,841-root-ERROR: near "value": syntax error
 2019-11-28 22:59:28,841-root-ERROR: near "value": syntax error
+2020-06-10 23:02:29,145-root-ERROR: near "xmlrunner": syntax error
+2020-06-10 23:02:29,182-root-ERROR: near "myfunction": syntax error
+2020-06-10 23:03:25,265-root-ERROR: near "xmlrunner": syntax error
+2020-06-10 23:03:25,266-root-ERROR: near "myfunction": syntax error
+2020-06-10 23:04:43,829-root-ERROR: near "xmlrunner": syntax error
+2020-06-10 23:04:43,830-root-ERROR: no such table: ui_task_case_result
+2020-06-10 23:04:43,830-root-ERROR: no such table: ui_task_case_result
+2020-06-10 23:04:43,831-root-ERROR: near "mins": syntax error
+2020-06-10 23:04:43,831-root-ERROR: no such table: ui_task_case_result
+2020-06-10 23:15:07,416-root-ERROR: near "xmlrunner": syntax error
+2020-06-10 23:15:07,417-root-ERROR: no such table: ui_task_case_result
+2020-06-10 23:15:07,417-root-ERROR: no such table: ui_task_case_result
+2020-06-10 23:15:07,418-root-ERROR: near "mins": syntax error
+2020-06-10 23:15:07,418-root-ERROR: no such table: ui_task_case_result
