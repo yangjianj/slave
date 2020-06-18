@@ -525,6 +525,7 @@ class _TestResult(TestResult):
         #add at 20190905:增加时间记录
         self.starttime=0
         self.endtime=0
+        self.suite_result=[] #以测试套为单位记录测试结果
 
     def startTest(self, test):
         TestResult.startTest(self, test)
