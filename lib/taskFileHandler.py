@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
-from mysqlConnector import DataManager
-from ftpClient import FtpClient
+from lib.mysqlConnector import DataManager
+from lib.ftpClient import FtpClient
 import config as CONFIG
 
 '''
@@ -32,7 +32,7 @@ def convert_task_to_download_list(tasklist):
             continue
         casepath = row
         suite_name= casepath[0].split("\\")[-2]
-        suitefile= os.path.join(os.path.dirname(casepath[0]),suite_name+'.py')
+        suitefile= os.path.join(os.path.dirname(casepath[0]),suite_name+'.robot')
         saved = False
         for i in range(len(result)):
             if result[i]['suitefile'] == suitefile:

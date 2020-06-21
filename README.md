@@ -1,4 +1,7 @@
 # slave
+## slave模块介绍
+![Alt text](./doc/slave.JPG)
+
 执行：  
 开启redis服务  
 slave_run.py文件：web接口,提供对slave的其他操作  

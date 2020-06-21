@@ -1,14 +1,18 @@
 # -*-coding:UTF-8 -*-
-import os,time
+import sys,os,time
 import config as CONFIG
 import lib.taskFileHandler as taskFileHandler
 from lib.runner import UiRunner, ApiRunner
+sys.path.append(CONFIG.ROBOT_PATH)
+print(sys.path)
+from robotRunner.run import Runner
 '''
 负责任务管理：创建工作目录，报告目录，下载case，使用runner执行任务，任务结果存储到数据库
 '''
-class uiTaskManager():
+class TaskManager():
     def __init__(self,task):
         self.id = task['id']
+        self.name = task["name"]
         self.runSlave = task['slave']
         self.version = task['version']
         self.project = task['project']
@@ -25,10 +29,7 @@ class uiTaskManager():
         
     def download_case(self):
         self._create_work_dir()
-        caseidlist = []
-        for item in self.cases:
-            caseidlist.append(item['caseid'])
-        taskFileHandler.download_tasklist(caseidlist,self.work_dir)
+        taskFileHandler.download_tasklist(self.cases,self.work_dir)
     
     def serach_case_ftppath(self,caselist):
         #寻找uicase路径并返回
@@ -37,6 +38,27 @@ class uiTaskManager():
     
     def run(self):
         self.download_case()
-        runner = UiRunner(self.id,self.work_dir,self.report_dir)
-        #runner = UiRunner("E:\\localcase\\version_0.0.1_2020-06-08-23-05-22", self.report_dir)
-        return runner.run()
+        taskparam= {
+            "outputdir": self.report_dir,
+            "taskname": self.name,
+            "include": '',
+            "suite": '',
+            "suitedir": self.work_dir,
+            "variable": {"taskid":self.id}
+        }
+        runner = Runner()
+        runner.run_task(taskparam)
+        # runner = UiRunner(self.id,self.work_dir,self.report_dir)
+        # runner = UiRunner("E:\\localcase\\version_0.0.1_2020-06-08-23-05-22", self.report_dir)
+        return True
+
+if __name__ == '__main__':
+    task = {
+        "id":"taskid123456",
+        "name":"name123",
+        "slave":"slave1",
+        "version":"version001",
+        "project":"pro1",
+        "cases":["suite1","suite111","suite2","suite211","suite3"]
+    }
+    tm= TaskManager(task)

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import pika,threading
 import requests,time,datetime,json
-from lib.taskExector import Exector
-from lib.redisConnector.Connector as Connector
+from lib.taskManager import TaskManager
+from lib.redisConnector import Connector
 import config
 
 #rabbitmq消费消息回调函数
@@ -34,7 +34,7 @@ def run_redis():
         try:
             task = json.loads(item["data"])
             print(task)
-            Exector().task_handler(task)
+            # Exector().task_handler(task)
         except Exception as e:
             print(e)
 #slave心跳
@@ -60,5 +60,15 @@ def heartbeat():
             time.sleep(config.heartbeat)
 
 if __name__ == '__main__':
-    threading.Thread(target = heartbeat,args = ()).start()
-    run_redis()
+    # threading.Thread(target = heartbeat,args = ()).start()
+    # run_redis()
+    task = {
+        "id": "taskid123456",
+        "name": "name123",
+        "slave": "slave1",
+        "version": "version001",
+        "project": "pro1",
+        "cases": ["suite1", "suite111", "suite2", "suite211", "suite3"]
+    }
+    tm = TaskManager(task)
+    tm.run()

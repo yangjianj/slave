@@ -44,3 +44,5 @@ AUTO_DB = 'autotest'
 
 LOCAL_CASE_PATH = 'E:\\localcase'
 LOCAL_REPORT_PATH = 'E:\\report'
+
+ROBOT_PATH = "F:\\work\project\\"

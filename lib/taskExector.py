@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+import os,sys
 import config
-from lib.taskManager import uiTaskManager
 from lib.runner import UiRunner, ApiRunner
+
+sys.path.append(config.ROBOT_PATH)
+from robotRunner.run import Runner
 
 class Exector():
     def __init__(self):
@@ -13,11 +16,15 @@ class Exector():
         self.upload_report(task)
 
     def run(self, task):
-        if task["type"] == "ui":
-            uiTaskManager(task).run()
-        elif task["type"] == "api":
-            runner = ApiRunner(task)
-            return runner.run()
+        
+        robotrunner = Runner()
+        robotrunner.run_task(taskparam)
+        
+        # if task["type"] == "ui":
+        #     uiTaskManager(task).run()
+        # elif task["type"] == "api":
+        #     runner = ApiRunner(task)
+        #     return runner.run()
 
     def finish_task(self, task):
         #执行完task后更新task状态到master
@@ -66,5 +73,13 @@ if __name__ == "__main__":
                     {"caseid": "test2", "function": "login","status":"unfinished"},
                      ]
                      }
-
+    robottask = {
+    "outputdir":outputdir,
+    "taskname":"taskname",
+    "include":"para-test",
+    "suite":"",
+    "suitedir":"uitest_base",
+    "variable":{"taskid":"taskid12345"}
+    }
+    
     Exector().task_handler(task)

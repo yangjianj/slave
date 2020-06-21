@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 import redis,json
 import config as config
-'''
-
-'''
 
 class Connector():
     def __init__(self):
