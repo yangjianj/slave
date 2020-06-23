@@ -44,7 +44,7 @@ class TaskManager():
             "include": '',
             "suite": '',
             "suitedir": self.work_dir,
-            "variable": {"taskid":self.id}
+            "variable": {"taskid":self.id,"name":"myname"}
         }
         runner = Runner()
         runner.run_task(taskparam)
