@@ -1,5 +1,5 @@
-# slave
-## slave模块介绍
+# worker
+## worker模块介绍
 ![Alt text](./doc/slave.JPG)
 
 执行：  
