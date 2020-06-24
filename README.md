@@ -1,6 +1,6 @@
 # worker
 ## worker模块介绍
-![Alt text](./doc/slave.JPG)
+![Alt text](./doc/worker.JPG)
 
 执行：  
 开启redis服务  
