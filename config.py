@@ -31,10 +31,12 @@ APICASE_DIR = os.path.join(BASEDIR,'cases/api/')
 Interface_Time_Out = 10
 API_RESULT_TABLE = 'api_result_table'
 
+#redis配置
 REDIS_HOST = '127.0.0.1'
 REDIS_PORT = 6379
 TASK_TOPIC = 'task'
 
+#mongo配置
 MONGO_IP = '127.0.0.1'
 MONGO_PORT = 27017
 MONGO_USER = ''

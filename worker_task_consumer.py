@@ -34,8 +34,10 @@ def run_redis():
         try:
             task = json.loads(item["data"])
             print(task)
-            # Exector().task_handler(task)
+            tm = TaskManager(task)
+            tm.run()
         except Exception as e:
+            print("error in work_task_consumer.run_redis:")
             print(e)
 #slave心跳
 def heartbeat():
@@ -51,7 +53,8 @@ def heartbeat():
             response = requests.request("POST",url,data=data,headers=headers).text
             response = json.loads(response)
             if  response["status"] == "true":
-                print("connect master succeed")
+                #print("connect master succeed")
+                pass
             else:
                 print(response["message"])
         except Exception as error:
@@ -60,8 +63,9 @@ def heartbeat():
             time.sleep(config.heartbeat)
 
 if __name__ == '__main__':
-    # threading.Thread(target = heartbeat,args = ()).start()
-    # run_redis()
+    threading.Thread(target = heartbeat,args = ()).start()
+    run_redis()
+    '''
     task = {
         "id": "taskid123456",
         "name": "name123",
@@ -72,3 +76,4 @@ if __name__ == '__main__':
     }
     tm = TaskManager(task)
     tm.run()
+    '''

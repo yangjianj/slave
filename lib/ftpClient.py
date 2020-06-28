@@ -60,6 +60,7 @@ class FtpClient():
             self.client.dir(path)
             return True
         except Exception as e:
+            print(e)
             print(path,' not exist!')
             return False
 

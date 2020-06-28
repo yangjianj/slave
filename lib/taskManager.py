@@ -1,7 +1,7 @@
 # -*-coding:UTF-8 -*-
 import sys,os,time
 import config as CONFIG
-import lib.taskFileHandler as taskFileHandler
+from lib.taskFileHandler import TaskFileHandler
 from lib.runner import UiRunner, ApiRunner
 sys.path.append(CONFIG.ROBOT_PATH)
 print(sys.path)
@@ -19,6 +19,7 @@ class TaskManager():
         self.cases = task['cases']
         self.work_dir = None
         self.report_dir = None
+        self.TaskFileHandler = TaskFileHandler()
     
     def _create_work_dir(self):
         wt = time.strftime("%Y-%m-%d-%H-%M-%S")
@@ -28,8 +29,10 @@ class TaskManager():
         os.makedirs(self.report_dir)
         
     def download_case(self):
+        print("start download cases")
         self._create_work_dir()
-        taskFileHandler.download_tasklist(self.cases,self.work_dir)
+        self.TaskFileHandler.download_tasklist(self.cases,self.work_dir)
+        print("finished download cases")
     
     def serach_case_ftppath(self,caselist):
         #寻找uicase路径并返回

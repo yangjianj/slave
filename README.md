@@ -50,16 +50,16 @@ slave_task_consumer.py文件：任务监听处理入口+心跳
                  ]
                      }
 
-task = {"id": 5662356461,
-        "type": "ui",
-        "slave":"1.1.1.1",
-        "version": "0.0.1",
-        "project": "lianjia",
-         "cases": [
-                {"suitename": "ui_lianjia_test_001", "project": "lianjia","function": "login","status":"unfinished"},
-                {"suitename": "ui_lianjia_test_001","project": "lianjia", "function": "login","status":"unfinished"},
-                 ]
-                 }
+执行robotframework任务格式
+task = {
+        "id": "taskid123456",
+        "name": "name123",
+        "slave": "slave1",
+        "version": "version001",
+        "project": "pro1",
+        "cases": ["suite1", "suite111", "suite2", "suite211", "suite3", "suite311", "suite411", "suite4"]
+    }
+    
 '''
 
 # 注意点：   
@@ -89,7 +89,7 @@ caseid : 页面caseid == 脚本caseid
 
 
 #规范   
-1.脚本存放规范：   
+1.unittest脚本存放规范：   
 suitename(dir)   
   --suitename.py  #suite文件名与suite目录名一致，以.py结尾
   --config   #下所有文件会被下载
@@ -109,3 +109,6 @@ suitename(dir)
  2.2 master后台部署
  2.3 master前台部署    
  
+#注意点：    
+1.output.xml生成log.html速率   
+2.output.xml上传到log服务器速率    

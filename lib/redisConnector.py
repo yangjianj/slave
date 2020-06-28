@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import redis,json
-import config as config
+import config as CONFIG
 
 class Connector():
     def __init__(self):
-        self.client = redis.Redis(host=config.REDIS_HOST,port=config.REDIS_PORT,db=0)
+        self.client = redis.Redis(host=CONFIG.REDIS_HOST,port=CONFIG.REDIS_PORT,db=0)
 
     def set(self,key,value):
         return self.client.set(key,value)
@@ -31,6 +31,8 @@ class Connector():
         return ps.listen()
 
     def publish(self,topic,message):
+        if type(message) == dict:
+            message= json.dumps(message)
         try:
             self.client.publish(topic,message)
             return True
