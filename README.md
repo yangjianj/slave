@@ -2,6 +2,11 @@
 ## worker模块介绍
 ![Alt text](./doc/worker.JPG)
 
+##相关项目：   
+[控制端前台](https://github.com/yangjianj/autotest_ui)   
+[控制端后台](https://github.com/yangjianj/django_web)   
+[robotframework执行器](https://github.com/yangjianj/ui-api-robotframework)    
+
 执行：  
 开启redis服务  
 slave_run.py文件：web接口,提供对slave的其他操作  
