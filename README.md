@@ -1,6 +1,6 @@
 # worker
 ## worker模块介绍
-![Alt text](./doc/worker.JPG)
+![流程概要图](./doc/worker.JPG)
 
 ##相关项目：   
 [控制端前台](https://github.com/yangjianj/autotest_ui)   
