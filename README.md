@@ -75,7 +75,7 @@ task = {
 2.unittest discover子目录下脚本时需要目录有__init__.py文件才行   
 
 ## 疑难：
-### 1.前台创建的接口case级别和suite级别setup  setdown--暂不考虑  
+### 1.前台创建的接口case级别和suite级别setup  setdown    
 例：  
 1.1前置造数据操作--手工操作固定服务器数据库   
 1.2前置某目录下所有请求都需要Token或提前登录后的cookie--页面添加公共操作部分   
