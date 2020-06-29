@@ -3,11 +3,11 @@
 ### 流程概要图：
 ![流程概要图](https://github.com/yangjianj/worker/blob/master/doc/worker.jpg)
 ### 详细业务流程图：
-![业务流程图](./doc/业务流程图.jpg)
+![业务流程图](https://github.com/yangjianj/worker/blob/master/doc/业务流程图.jpg)
 ### 组网图：
-![组网图](./doc/组网图.jpg)
+![组网图](https://github.com/yangjianj/worker/blob/master/doc/组网图.jpg)
 ### 执行器：
-![执行器](./doc/任务执行器.jpg)
+![执行器](https://github.com/yangjianj/worker/blob/master/doc/任务执行器.jpg)
 
 ## 相关项目：   
 [控制端前台](https://github.com/yangjianj/autotest_ui)   
