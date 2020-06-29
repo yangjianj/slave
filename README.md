@@ -7,7 +7,7 @@
 ### 组网图：
 ![组网图](./doc/组网图.jpg)
 ### 执行器：
-![执行器](./doc/执行器.jpg)
+![执行器](./doc/任务执行器.jpg)
 
 ## 相关项目：   
 [控制端前台](https://github.com/yangjianj/autotest_ui)   
