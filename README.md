@@ -1,6 +1,6 @@
 # worker
 ## worker模块介绍
-![流程概要图](./doc/worker.jpg)
+![流程概要图](https://github.com/yangjianj/worker/blob/master/doc/worker.jpg)
 ![业务流程图](./doc/业务流程图.jpg)
 ![组网图](./doc/组网图.jpg)
 ![执行器](./doc/执行器.jpg)
