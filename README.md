@@ -1,9 +1,9 @@
 # worker
 ## worker模块介绍
-![流程概要图](./doc/worker.JPG)
-![业务流程图](./doc/业务流程图.JPG)
-![组网图](./doc/组网图.JPG)
-![执行器](./doc/执行器.JPG)
+![流程概要图](./doc/worker.jpg)
+![业务流程图](./doc/业务流程图.jpg)
+![组网图](./doc/组网图.jpg)
+![执行器](./doc/执行器.jpg)
 
 ##相关项目：   
 [控制端前台](https://github.com/yangjianj/autotest_ui)   
