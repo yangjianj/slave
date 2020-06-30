@@ -103,11 +103,11 @@ caseid : 页面caseid == 脚本caseid
 #规范   
 1.unittest脚本存放规范：   
 suitename(dir)   
-  --suitename.py  #suite文件名与suite目录名一致，以.py结尾
-  --config   #下所有文件会被下载
-    --config1.yml
-  --casefile1 #case按tasklist指定下载
-  --casefile2
+  --suitename.py  #suite文件名与suite目录名一致，以.py结尾    
+  --config   #下所有文件会被下载    
+    --config1.yml    
+  --casefile1 #case按tasklist指定下载    
+  --casefile2    
   
   
  #部署方法：    
@@ -117,9 +117,9 @@ suitename(dir)
  1.3 sqlite数据存放（实际环境可用mysql）    
  
  2.应用部署：   
- 2.1 slave部署：flask服务+消息队列消费服务程序
- 2.2 master后台部署
- 2.3 master前台部署    
+ 2.1 slave部署：flask服务+消息队列消费服务程序    
+ 2.2 master后台部署    
+ 2.3 master前台部署     
  
 #注意点：    
 1.output.xml生成log.html速率   
