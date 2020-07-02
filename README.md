@@ -2,8 +2,8 @@
 ## worker模块介绍
 ### 流程概要图：
 ![流程概要图](https://github.com/yangjianj/worker/blob/master/doc/worker.jpg)
-### 详细业务流程图：
-![业务流程图](https://github.com/yangjianj/worker/blob/master/doc/业务流程图.jpg)
+### 详细任务生命周期：
+![任务生命周期](https://github.com/yangjianj/worker/blob/master/doc/任务生命周期.jpg)
 ### 组网图：
 ![组网图](https://github.com/yangjianj/worker/blob/master/doc/组网图.jpg)
 ### 执行器：
