@@ -20,22 +20,35 @@ slave_run.py文件：web接口,提供对slave的其他操作
 slave_task_consumer.py文件：任务监听处理入口+心跳  
 
 功能描述：    
-1.ui,api自动化任务执行器    
+1.自动化任务执行端    
 2.任务执行完日志收集及上传    
-3.提供slave机器系统参数上报接口   
+3.worker心跳保持   
 4.从ftpserver下载ui用例
 
 实现介绍：   
 1.ui自动化：yml存放页面元素定位信息，unittest组织用例结构，selenium驱动浏览器    
 2.api自动化：根据任务传输的api case信息通过封装好的方法带入case信息而执行case    
-3.redis实现任务的收发（redis简单无需安装，适合放在git上）   
+3.redis实现任务的收发（redis无需安装，适合放在git上，实际部署可换用其他消息中间件）   
 4.执行流程： 任务接收分配器 -- 任务管理器 -- 任务执行器    
 
 
 
 详情：    
-1.任务格式：    
-'''python
+1.任务格式：  
+
+执行robotframework任务格式
+'''
+task = {
+        "id": "taskid123456",
+        "name": "name123",
+        "slave": "slave1",
+        "version": "version001",
+        "project": "pro1",
+        "cases": ["suite1", "suite111", "suite2", "suite211", "suite3", "suite311", "suite411", "suite4"]
+    }
+'''
+
+'''
     task = {"id": 5662356461,
             "type": "api",
             "slave": "1.1.1.1",
@@ -61,16 +74,6 @@ slave_task_consumer.py文件：任务监听处理入口+心跳
                                                   "data": {"type": "array"}}}}
                  ]
                      }
-
-执行robotframework任务格式
-task = {
-        "id": "taskid123456",
-        "name": "name123",
-        "slave": "slave1",
-        "version": "version001",
-        "project": "pro1",
-        "cases": ["suite1", "suite111", "suite2", "suite211", "suite3", "suite311", "suite411", "suite4"]
-    }
     
 '''
 
