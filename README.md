@@ -16,7 +16,7 @@
 
 执行：  
 开启redis服务  
-slave_run.py文件：web接口,提供对slave的其他操作  
+slave_run.py文件：web接口,提供对worker的其他操作  
 slave_task_consumer.py文件：任务监听处理入口+心跳  
 
 功能描述：    
